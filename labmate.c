@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <search.h>
 #include <unistd.h>
+#include <string.h>
 #define MAX_STUDENTS	100
 
 
@@ -51,10 +52,13 @@ void read_conflict(char * fname)
 	FILE * fp ;
 	char * b = NULL ;
 	size_t n = 0 ;
-
+	extern int errno;
 
 	fp = fopen(fname, "r") ;  // TODO: handle file errors
-	
+	if(fp == NULL)//Handling file errors using strerror
+	{
+		printf("File Read Error: %s\n", strerror(errno));
+	}
 	while (getline(&b, &n, fp) > 0) {
 		int n_members ;
 		int m1, m2, m3;
