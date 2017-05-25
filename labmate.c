@@ -4,6 +4,7 @@
 #include <search.h>
 #include <unistd.h>
 #include <string.h>
+#include <errno.h>
 #define MAX_STUDENTS	100
 
 
