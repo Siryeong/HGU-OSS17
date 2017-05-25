@@ -16,13 +16,13 @@ int team[MAX_STUDENTS] ;
 int n_team_members[MAX_STUDENTS / 2] ;
 int conflict[MAX_STUDENTS][MAX_STUDENTS] ;
 
-int read_student_list() 
+int read_student_list(char* fileName) 
 {
 	FILE * fp ;
 	char * b ;
 	int i ; 
 
-	fp = fopen("students.txt", "r") ; //TODO: allow a user can give a different file name as an argument.
+	fp = fopen(fileName, "r") ; //TODO: allow a user can give a different file name as an argument.
 	while (feof(fp) == 0) {
 		if (fscanf(fp, "%d", &(students[n_students])) == 1)
 			n_students++ ;
@@ -190,8 +190,12 @@ void main(int argc, char ** argv)
 				exit(1) ;
 		}
 	}
+	
+	if(argv[2] != NULL)
+		read_student_list(argv[2]) ;
+	else
+		read_student_list(argv[1]);
 
-	read_student_list() ;
 	if (fconflict != NULL)
 		read_conflict(fconflict) ;
 	find_team_assignments() ;
