@@ -16,9 +16,8 @@ int students[MAX_STUDENTS] ;	// TODO: allow an arbitrary number of students can 
 int team[MAX_STUDENTS] ;
 int n_team_members[MAX_STUDENTS / 2] ;
 int conflict[MAX_STUDENTS][MAX_STUDENTS] ;
-char* fileName;
 
-int read_student_list() 
+int read_student_list(char* fileName) 
 {
 	FILE * fp ;
 	char * b ;
@@ -175,6 +174,7 @@ void main(int argc, char ** argv)
 {	
 	char c ; 
 	char * fconflict = NULL ;
+	char * fileName = NULL;
 
 	while ((c = getopt(argc, argv, "hpf:")) != -1) {
 		switch (c) {
@@ -200,7 +200,8 @@ void main(int argc, char ** argv)
 		}
 	}
 	
-	read_student_list();
+	if(fileName != NULL)	
+		read_student_list(fileName);
 
 	if (fconflict != NULL)
 		read_conflict(fconflict) ;
