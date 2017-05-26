@@ -182,8 +182,10 @@ void main(int argc, char ** argv)
 				break ;
 
 			case 'h':
-				printf("Help. I need somebody.\n") ;
-				// Please someone make a help message here.
+				printf("-p <filename>	Filename that contains the team list from the last lab session\n");
+				printf("-f <filename>	Filename that contains every student id in class\n");
+				printf("-h	Display these usage instructions\n");
+				// Please someone make a help message here. // Complete
 				break ;
 			
 			case 'f':
