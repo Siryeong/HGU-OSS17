@@ -23,7 +23,8 @@ int read_student_list(char* fileName)
 	char * b ;
 	int i ; 
 
-	fp = fopen(fileName, "r") ; //TODO: allow a user can give a different file name as an argument.
+	fp = fopen(fileName, "r") ; //done(TODO: allow a user can give a different file name as an argument.)
+
 	while (feof(fp) == 0) {
 		if (fscanf(fp, "%d", &(students[n_students])) == 1)
 			n_students++ ;
