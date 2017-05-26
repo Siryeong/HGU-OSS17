@@ -34,7 +34,7 @@ int read_student_list(char* fileName)
 
 	for (i = 0 ; i < n_students ; i++) 
 		conflict[i][i] = 0 ;
-
+			
 	// TODO: check if a given student ID is valid.
 }
 
