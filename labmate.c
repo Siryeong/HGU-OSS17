@@ -24,6 +24,10 @@ int read_student_list(char* fileName)
 	int i ; 
 
 	fp = fopen(fileName, "r") ; //done(TODO: allow a user can give a different file name as an argument.)
+	if( fp == NULL){ //(add code)fix bug Print errors when a non-existent file name is input 
+		printf("Not vaild file name \n"); 
+		exit(1);  
+	}
 
 	while (feof(fp) == 0) {
 		if (fscanf(fp, "%d", &(students[n_students])) == 1)
