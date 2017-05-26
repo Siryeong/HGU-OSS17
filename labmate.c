@@ -97,12 +97,13 @@ void read_conflict(char * fname)
 int _assign_team(int id) {
 	int is_team_feasible[MAX_STUDENTS / 2] ;
 	int n_feasible_teams = 0 ;
+	int n_max_members = n_students % 2 + 2;//When the number of students is even 3-memberd team cannot be made
 	int i = 0 ; 
 	int r = 0 ;
 	int c = 0 ;
 
 	for (i = 0 ; i < n_teams ; i++) {
-		is_team_feasible[i] = (n_team_members[i] < 3) ? 1 : 0 ;
+		is_team_feasible[i] = (n_team_members[i] < n_max_members) ? 1 : 0 ;
 		if (n_team_members[i] == 3) {
 			for (i = 0 ; i < n_teams ; i++) 
 				is_team_feasible[i] = (n_team_members[i] < 2) ? 1 : 0 ;			
