@@ -16,8 +16,9 @@ int students[MAX_STUDENTS] ;	// TODO: allow an arbitrary number of students can 
 int team[MAX_STUDENTS] ;
 int n_team_members[MAX_STUDENTS / 2] ;
 int conflict[MAX_STUDENTS][MAX_STUDENTS] ;
+char* fileName;
 
-int read_student_list(char* fileName) 
+int read_student_list() 
 {
 	FILE * fp ;
 	char * b ;
@@ -174,7 +175,7 @@ void main(int argc, char ** argv)
 	char c ; 
 	char * fconflict = NULL ;
 
-	while ((c = getopt(argc, argv, "hp:")) != -1) {
+	while ((c = getopt(argc, argv, "hpf:")) != -1) {
 		switch (c) {
 			case 'p':
 				fconflict = optarg ;
@@ -184,6 +185,10 @@ void main(int argc, char ** argv)
 				printf("Help. I need somebody.\n") ;
 				// Please someone make a help message here.
 				break ;
+			
+			case 'f':
+				fileName = optarg;
+				break;
 
 			default:
 				fprintf(stderr, "Invalid argument\n") ; 
@@ -192,10 +197,7 @@ void main(int argc, char ** argv)
 		}
 	}
 	
-	if(argv[2] != NULL)
-		read_student_list(argv[2]) ;
-	else
-		read_student_list(argv[1]);
+	read_student_list();
 
 	if (fconflict != NULL)
 		read_conflict(fconflict) ;
