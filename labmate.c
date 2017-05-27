@@ -16,15 +16,19 @@ int students[MAX_STUDENTS] ;	// TODO: allow an arbitrary number of students can 
 int team[MAX_STUDENTS] ;
 int n_team_members[MAX_STUDENTS / 2] ;
 int conflict[MAX_STUDENTS][MAX_STUDENTS] ;
-char* fileName;
 
-int read_student_list() 
+int read_student_list(char* fileName) 
 {
 	FILE * fp ;
 	char * b ;
 	int i ; 
 
-	fp = fopen(fileName, "r") ; //TODO: allow a user can give a different file name as an argument.
+	fp = fopen(fileName, "r") ; //done(TODO: allow a user can give a different file name as an argument.)
+	if( fp == NULL){ //(add code)fix bug Print errors when a non-existent file name is input 
+		printf("Not vaild file name \n"); 
+		exit(1);  
+	}
+
 	while (feof(fp) == 0) {
 		if (fscanf(fp, "%d", &(students[n_students])) == 1)
 			n_students++ ;
@@ -35,7 +39,7 @@ int read_student_list()
 
 	for (i = 0 ; i < n_students ; i++) 
 		conflict[i][i] = 0 ;
-
+			
 	// TODO: check if a given student ID is valid.
 }
 
@@ -97,12 +101,13 @@ void read_conflict(char * fname)
 int _assign_team(int id) {
 	int is_team_feasible[MAX_STUDENTS / 2] ;
 	int n_feasible_teams = 0 ;
+	int n_max_members = n_students % 2 + 2;//When the number of students is even 3-memberd team cannot be made
 	int i = 0 ; 
 	int r = 0 ;
 	int c = 0 ;
 
 	for (i = 0 ; i < n_teams ; i++) {
-		is_team_feasible[i] = (n_team_members[i] < 3) ? 1 : 0 ;
+		is_team_feasible[i] = (n_team_members[i] < n_max_members) ? 1 : 0 ;
 		if (n_team_members[i] == 3) {
 			for (i = 0 ; i < n_teams ; i++) 
 				is_team_feasible[i] = (n_team_members[i] < 2) ? 1 : 0 ;			
@@ -174,6 +179,7 @@ void main(int argc, char ** argv)
 {	
 	char c ; 
 	char * fconflict = NULL ;
+	char * fileName = NULL;
 
 	while ((c = getopt(argc, argv, "hpf:")) != -1) {
 		switch (c) {
@@ -182,8 +188,10 @@ void main(int argc, char ** argv)
 				break ;
 
 			case 'h':
-				printf("Help. I need somebody.\n") ;
-				// Please someone make a help message here.
+				printf("-p <filename>	Filename that contains the team list from the last lab session\n");
+				printf("-f <filename>	Filename that contains every student id in class\n");
+				printf("-h	Display these usage instructions\n");
+				// Please someone make a help message here. // Complete
 				break ;
 			
 			case 'f':
@@ -197,7 +205,8 @@ void main(int argc, char ** argv)
 		}
 	}
 	
-	read_student_list();
+	if(fileName != NULL)	
+		read_student_list(fileName);
 
 	if (fconflict != NULL)
 		read_conflict(fconflict) ;
