@@ -199,8 +199,8 @@ void main(int argc, char ** argv)
 				break;
 
 			default:
-				fprintf(stderr, "Invalid argument\n") ; 
-				// Please someone make a better error message.
+				fprintf(stderr, "Invalid argument the argument: flag should be one of p, f, h.. A  file name should be followed by f\n") ; 
+				// Please someone make a better error message. // fixing...
 				exit(1) ;
 		}
 	}
