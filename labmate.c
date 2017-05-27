@@ -40,7 +40,12 @@ int read_student_list(char* fileName)
 	for (i = 0 ; i < n_students ; i++) 
 		conflict[i][i] = 0 ;
 			
-	// TODO: check if a given student ID is valid.
+	// DONE(TODO: check if a given student ID is valid.)
+	for(i = 0 ; i <n_students ; i++)
+		if(!(20000000<students[i] && students[i]<21800000)){
+			fprintf(stderr,"Invalid student ID was detected. \n");
+			exit(1);
+			}//Cause an error ,if student id is not in the range.
 }
 
 int get_student_index(int id) 
