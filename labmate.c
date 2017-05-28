@@ -191,7 +191,7 @@ void main(int argc, char ** argv)
 	char * fconflict = NULL ;
 	char * fileName = NULL;
 
-	while ((c = getopt(argc, argv, "hpf:")) != -1) {
+	while ((c = getopt(argc, argv, "hp:f:")) != -1) {
 		switch (c) {
 			case 'p':
 				fconflict = optarg ;
