@@ -65,10 +65,10 @@ void read_conflict(char * fname)
 	size_t n = 0 ;
 	extern int errno;
 
-	fp = fopen(fname, "r") ;  // TODO: handle file errors
+	fp = fopen(fname, "r") ;  // TODO: handle file errors, //fixing
 	if(fp == NULL)//Handling file errors using strerror
 	{
-		printf("File Read Error: %s\n", strerror(errno));
+		fprintf(stderr,"File Read Error:%s\n",strerror(errno));
 	}
 	while (getline(&b, &n, fp) > 0) {
 		int n_members ;
