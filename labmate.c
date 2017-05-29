@@ -12,7 +12,7 @@
 
 int n_students = 0 ;
 int n_teams = 0 ;
-int students[MAX_STUDENTS] ;	// TODO: allow an arbitrary number of students can come from the input.
+int *students ;	// DONE: allow an arbitrary number of students can come from the input.
 int team[MAX_STUDENTS] ;
 int n_team_members[MAX_STUDENTS / 2] ;
 int conflict[MAX_STUDENTS][MAX_STUDENTS] ;
@@ -22,6 +22,7 @@ int read_student_list(char* fileName)
 	FILE * fp ;
 	char * b ;
 	int i ; 
+	int studentId;
 
 	fp = fopen(fileName, "r") ; //done(TODO: allow a user can give a different file name as an argument.)
 	if( fp == NULL){ //(add code)fix bug Print errors when a non-existent file name is input 
@@ -30,8 +31,14 @@ int read_student_list(char* fileName)
 	}
 
 	while (feof(fp) == 0) {
-		if (fscanf(fp, "%d", &(students[n_students])) == 1)
+		if (fscanf(fp, "%d", &(studentId)) == 1){
 			n_students++ ;
+			if(n_students==1)
+				students=(int*)malloc(sizeof(int)*n_students);
+			else
+				students=(int*)realloc(students, sizeof(int)*n_students);
+			students[n_students-1]=studentId;
+		}
 	}
 	fclose(fp) ;
 
