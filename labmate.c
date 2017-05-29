@@ -49,7 +49,7 @@ int read_student_list(char* fileName)
 			
 	// DONE(TODO: check if a given student ID is valid.)
 	for(i = 0 ; i <n_students ; i++)
-		if(!(20000000<students[i] && students[i]<21800000)){
+		if(!(19600000<students[i] && students[i]<21800000)){
 			fprintf(stderr,"Invalid student ID was detected. \n");
 			exit(1);
 			}//Cause an error ,if student id is not in the range.
