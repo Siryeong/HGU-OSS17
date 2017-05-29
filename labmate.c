@@ -76,7 +76,8 @@ void read_conflict(char * fname)
 		int i1, i2, i3 ;
 
 		n_members = sscanf(b, "%d %d %d", &m1, &m2, &m3) ;
-		free(b) ;
+		free(b);
+		b = NULL;
 
 		if (n_members <= 1) {
 			fprintf(stderr, "Input Error: The file has a case where the team is composed alone!\n") ; //Done(TODO: need a better error message.)
