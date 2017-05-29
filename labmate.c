@@ -134,6 +134,7 @@ int _assign_team(int id) {
 	}
 
 	while (n_feasible_teams > 0) {
+		srand(time(NULL) + rand()); // Fiexd the same list being created every time by using -f students.txt
 		r = rand() % n_feasible_teams ; 		
 		for (i = 0 ; i < n_teams ; i++) {
 			if (is_team_feasible[i] == 1) {
