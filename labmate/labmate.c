@@ -108,6 +108,7 @@ void read_conflict(char * fname)
 			conflict[i3][i2] = 1 ;
 		}
 	}
+	fclose(fp) ;
 	//TODO: check if the given information is valid.
 }
 
