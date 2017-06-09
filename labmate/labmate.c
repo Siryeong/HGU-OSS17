@@ -8,7 +8,6 @@
 #define MAX_STUDENTS	100
 
 
-//done:TODO: please someone write a build script.
 
 int n_students = 0 ;
 int n_teams = 0 ;
