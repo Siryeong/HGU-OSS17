@@ -75,6 +75,7 @@ void read_conflict(char * fname)
 	if(fp == NULL)//Handling file errors using strerror
 	{
 		fprintf(stderr,"File Read Error:%s\n",strerror(errno));
+		exit(1) ;
 	}
 	while (getline(&b, &n, fp) > 0) {
 		int n_members ;
